@@ -1,6 +1,7 @@
 package com.bridgelabz.fundoo.user.service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -156,6 +157,12 @@ public class UserServiceImplimentation implements UserService{
 		Response response = StatusUtil.statusInfo(environment.getProperty("status.password.resetpassword"), environment.getProperty("status.code.success"));
 		return response;
 		
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		List<User> list = userRepository.findAll();
+		return list;
 	}
 
 }

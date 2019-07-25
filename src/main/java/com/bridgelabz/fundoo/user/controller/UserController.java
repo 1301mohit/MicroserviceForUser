@@ -1,5 +1,7 @@
 package com.bridgelabz.fundoo.user.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.bridgelabz.fundoo.user.dto.LoginDto;
 import com.bridgelabz.fundoo.user.dto.UserDto;
+import com.bridgelabz.fundoo.user.model.User;
 import com.bridgelabz.fundoo.user.response.Response;
 import com.bridgelabz.fundoo.user.service.UserService;
 
@@ -85,4 +88,10 @@ static final Logger logger=LoggerFactory.getLogger(UserController.class);
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 	}
 	
+	@GetMapping("/getAllUser")
+	public ResponseEntity<List<User>> getAllUser(){
+		logger.info("Get all user");
+		List<User> list = userService.getAllUser();
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
 }
